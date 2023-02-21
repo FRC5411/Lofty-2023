@@ -50,9 +50,9 @@ import static frc.robot.Constants.CAN.*;
 
 public class Drivetrain extends SubsystemBase {
   private Pigeon m_gyro;
-  private Arm m_arm;
-  private PinchersofPower m_claw;
-  private Limelight m_limelight;
+  //private Arm m_arm;
+  //private PinchersofPower m_claw;
+  //private Limelight m_limelight;
 
   private SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
     new Translation2d(-ROBOT_WIDTH/2, ROBOT_WIDTH/2),
@@ -126,11 +126,11 @@ public class Drivetrain extends SubsystemBase {
   private double _rotationKd = 1;
 
   /** Creates a new ExampleSubsystem. */
-  public Drivetrain(Pigeon m_gyro, Arm m_arm, PinchersofPower m_claw, Limelight m_limelight) {
+  public Drivetrain(Pigeon m_gyro/*, Arm m_arm, PinchersofPower m_claw, Limelight m_limelight*/) {
     this.m_gyro = m_gyro;
-    this.m_arm = m_arm;
+    /*this.m_arm = m_arm;
     this.m_claw = m_claw;
-    this.m_limelight = m_limelight;
+    this.m_limelight = m_limelight;*/
     
     Telemetry.setValue("drivetrain/PathPlanner/translationKp", _translationKp);
     Telemetry.setValue("drivetrain/PathPlanner/translationKi", _translationKi);
@@ -235,7 +235,7 @@ public class Drivetrain extends SubsystemBase {
     Telemetry.setValue("drivetrain/kinematics/field/DSrightSpeed", ( -forwardKinematics.vyMetersPerSecond * Math.cos(Math.toRadians(m_gyro.getYaw())) - forwardKinematics.vxMetersPerSecond * Math.sin(Math.toRadians(m_gyro.getYaw()))));
 
     //_robotPose = m_odometry.update(new Rotation2d(Math.toRadians(m_gyro.getYaw())), new SwerveModuleState(FL_Actual_Speed, new Rotation2d(Math.toRadians(FL_Actual_Position))), new SwerveModuleState(FR_Actual_Speed, new Rotation2d(Math.toRadians(FR_Actual_Position))), new SwerveModuleState(BL_Actual_Speed, new Rotation2d(Math.toRadians(BL_Actual_Position))), new SwerveModuleState(BR_Actual_Speed, new Rotation2d(Math.toRadians(BR_Actual_Position))) );
-    m_odometry.addVisionMeasurement(m_limelight.getPose(), Timer.getFPGATimestamp() - m_limelight.getLatency());
+    //m_odometry.addVisionMeasurement(m_limelight.getPose(), Timer.getFPGATimestamp() - m_limelight.getLatency());
     _robotPose = m_odometry.update(new Rotation2d(m_gyro.getYaw()), getSwerveModulePositions());
 
     Telemetry.setValue("drivetrain/odometry/field/DSawayPosition", -_robotPose.getX());
@@ -409,6 +409,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public Command getAutonomousCommand () {
+    return new   InstantCommand();/*
     // This will load the file "FullAuto.path" and generate it with a max velocity of 4 m/s and a max acceleration of 3 m/s^2
     // for every path in the group
     List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(
@@ -449,7 +450,7 @@ public class Drivetrain extends SubsystemBase {
       (Subsystem) this // The drive subsystem. Used to properly set the requirements of path following commands
     );
 
-    return autoBuilder.fullAuto(pathGroup);
+    return autoBuilder.fullAuto(pathGroup);*/
   }
 }
 

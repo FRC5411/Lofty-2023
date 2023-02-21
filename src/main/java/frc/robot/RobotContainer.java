@@ -34,20 +34,20 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Pigeon m_gyro = new Pigeon();
   private final Limelight m_limelight = new Limelight();
-  private final LEDs m_LEDs = new LEDs();
-  private final PinchersofPower m_claw = new PinchersofPower();
-  private final Arm m_arm = new Arm(m_claw, m_LEDs, driverController);
-  private final Drivetrain m_swerve = new Drivetrain(m_gyro, m_arm, m_claw, m_limelight);
+  //private final LEDs m_LEDs = new LEDs();
+  //private final PinchersofPower m_claw = new PinchersofPower();
+  //private final Arm m_arm = new Arm(m_claw, m_LEDs, driverController);
+  private final Drivetrain m_swerve = new Drivetrain(m_gyro/*m_arm, m_claw, m_limelight*/);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    Telemetry.setValue("general/autonomous/availableRoutines", (String[]) Stream.of(new File("/home/lvuser/deploy/").listFiles()).filter(file -> !file.isDirectory()).map(File::getName).collect(Collectors.toSet()).toArray());
+    //Telemetry.setValue("general/autonomous/availableRoutines", (String[]) Stream.of(new File("/home/lvuser/deploy/").listFiles()).filter(file -> !file.isDirectory()).map(File::getName).collect(Collectors.toSet()).toArray());
 
     // Configure the button bindings
     configureButtonBindings();
 
-    m_LEDs.setDefaultCommand(m_LEDs.idle());
-    m_arm.setDefaultCommand(m_arm.defaultCommand());
+    //m_LEDs.setDefaultCommand(m_LEDs.idle());
+    //m_arm.setDefaultCommand(m_arm.defaultCommand());
     m_swerve.setDefaultCommand(new DriveCommand(m_swerve));
   }
 
@@ -61,7 +61,7 @@ public class RobotContainer {
     driverController.a().onTrue(new InstantCommand(m_swerve::zeroGyro));
     driverController.b().onTrue(new InstantCommand(m_swerve::toggleRobotOrient));
 
-    copilotController.button(0).whileTrue(m_arm.moveToPositionCommand(positions.Substation));
+    /*copilotController.button(0).whileTrue(m_arm.moveToPositionCommand(positions.Substation));
     copilotController.button(1).whileTrue(m_arm.moveToPositionCommand(positions.Floor));
     copilotController.button(2).whileTrue(m_arm.moveToPositionCommand(positions.ScoreHigh));
     copilotController.button(3).whileTrue(m_arm.moveToPositionCommand(positions.FloorAlt));
@@ -69,7 +69,7 @@ public class RobotContainer {
     copilotController.button(5).whileTrue(m_arm.moveToPositionCommand(positions.ScoreLow));
     copilotController.button(6).onTrue(m_claw.outtakeCommand());
     copilotController.button(7).onTrue(m_LEDs.turnYellow().alongWith(new InstantCommand( () -> m_claw.setMode("cone"))));
-    copilotController.button(8).onTrue(m_LEDs.turnPurple().alongWith(new InstantCommand( () -> m_claw.setMode("cube"))));
+    copilotController.button(8).onTrue(m_LEDs.turnPurple().alongWith(new InstantCommand( () -> m_claw.setMode("cube"))));*/
   }
 
   /**
