@@ -183,6 +183,27 @@ public class Drivetrain extends SubsystemBase {
     BL_Actual_Speed = 2.0*(((BL_Drive.getSelectedSensorVelocity() / 4096) * 10) / DRIVE_GEAR_RATIO) * Math.PI * WHEEL_DIAMETER;
     BR_Actual_Speed = 2.0*(((BR_Drive.getSelectedSensorVelocity() / 4096) * 10) / DRIVE_GEAR_RATIO) * Math.PI * WHEEL_DIAMETER;
 
+    Telemetry.setValue("drivetrain/debug/FL/rawEncoderPosition", FL_Position.getPosition());
+    Telemetry.setValue("drivetrain/debug/FL/rawPIDError", FL_Azimuth.getClosedLoopError());
+    Telemetry.setValue("drivetrain/debug/FL/rawAbsEncoderPosition", FL_Position.getAbsolutePosition());
+    Telemetry.setValue("drivetrain/debug/FL/motorEncoderPosition", FL_Azimuth.getSelectedSensorPosition());
+    Telemetry.setValue("drivetrain/debug/FL/rawPIDtarget", FL_Azimuth.getClosedLoopTarget());
+    Telemetry.setValue("drivetrain/debug/FR/rawEncoderPosition", FR_Position.getPosition());
+    Telemetry.setValue("drivetrain/debug/FR/rawPIDError", FR_Azimuth.getClosedLoopError());
+    Telemetry.setValue("drivetrain/debug/FR/rawAbsEncoderPosition", FR_Position.getAbsolutePosition());
+    Telemetry.setValue("drivetrain/debug/FR/motorEncoderPosition", FR_Azimuth.getSelectedSensorPosition());
+    Telemetry.setValue("drivetrain/debug/FR/rawPIDtarget", FR_Azimuth.getClosedLoopTarget());
+    Telemetry.setValue("drivetrain/debug/BL/rawEncoderPosition", BL_Position.getPosition());
+    Telemetry.setValue("drivetrain/debug/BL/rawPIDError", BL_Azimuth.getClosedLoopError());
+    Telemetry.setValue("drivetrain/debug/BL/rawAbsEncoderPosition", BL_Position.getAbsolutePosition());
+    Telemetry.setValue("drivetrain/debug/BL/motorEncoderPosition", BL_Azimuth.getSelectedSensorPosition());
+    Telemetry.setValue("drivetrain/debug/BL/rawPIDtarget", BL_Azimuth.getClosedLoopTarget());
+    Telemetry.setValue("drivetrain/debug/BR/rawEncoderPosition", BR_Position.getPosition());
+    Telemetry.setValue("drivetrain/debug/BR/rawPIDError", BR_Azimuth.getClosedLoopError());
+    Telemetry.setValue("drivetrain/debug/BR/rawAbsEncoderPosition", BR_Position.getAbsolutePosition());
+    Telemetry.setValue("drivetrain/debug/BR/motorEncoderPosition", BR_Azimuth.getSelectedSensorPosition());
+    Telemetry.setValue("drivetrain/debug/BR/rawPIDtarget", BR_Azimuth.getClosedLoopTarget());
+
     // dashboard data
     Telemetry.setValue("drivetrain/modules/FL/azimuth/targetPosition", FL_Target);
     Telemetry.setValue("drivetrain/modules/FR/azimuth/targetPosition", FR_Target);
